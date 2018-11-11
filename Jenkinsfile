@@ -14,15 +14,9 @@ pipeline {
     stage('Build Project') {
       steps {
           echo "${params.nightly}"
-          if(params.nightly) {
-            echo "Nightly"
-          }
-          else {
-            echo "Not Nightly"
-          }
-          echo "Building project ..."
       }
     }
+
     stage('Code Analysis') {
       steps {
           echo "Scanning with Sonar ..."
