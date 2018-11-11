@@ -6,8 +6,8 @@ pipeline {
       }
   }
   parameters {
-    string(defaultValue: "FULL", description: 'What Testing Type?', name: 'TestingType')
-    choice(choices: ['SMOKE', 'FULL'], description: 'What Testing Type - Multiple Choices', name: 'TestingTypeMultipleChoice')
+    string(defaultValue: "full", description: 'What Testing Type?', name: 'TestingType')
+    choice(choices: ['smoke', 'fule'], description: 'What Testing Type - Multiple Choices', name: 'TestingTypeMultipleChoice')
   }
   stages {
     stage('Build Project') {
