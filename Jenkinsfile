@@ -7,7 +7,7 @@ pipeline {
   }
   parameters {
     string(defaultValue: "full", description: 'What Testing Type?', name: 'TestingType')
-    choice(choices: ['smoke', 'fule'], description: 'What Testing Type - Multiple Choices', name: 'TestingTypeMultipleChoice')
+    choice(choices: ['smoke', 'full'], description: 'What Testing Type - Multiple Choices', name: 'TestingTypeMultipleChoice')
     booleanParam(name: 'nightly', defaultValue: false, description: '')    
   }
   stages {
@@ -15,8 +15,8 @@ pipeline {
       steps {
           echo "${params.nightly}"
           script {
-            boolean nightly = build.buildVariableResolver.resolve("nightly").toString().toBoolean();
-            if(${params.nightly}) {
+            String nightly = build.buildVariableResolver.resolve("nightly").toString();
+            if(nightly == "true") {
               echo "Nightly"
             }
             else {
