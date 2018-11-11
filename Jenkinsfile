@@ -5,6 +5,10 @@ pipeline {
           args '-v $HOME/.m2:/root/.m2'
       }
   }
+  parameters {
+    string(defaultValue: "FULL", description: 'What Testing Type?', name: 'TestingType')
+    choice(choices: ['SMOKE', 'FULL'], description: 'What Testing Type - Multiple Choices', name: 'TestingTypeMultipleChoice')
+  }
   stages {
     stage('Build Project') {
       steps {
@@ -28,7 +32,8 @@ pipeline {
     }
     stage('Deploy Approval'){
       steps {
-        input "Deploy to Testing environment?"
+        echo "Testing Type: ${params.TestingType}"
+        echo "TT from Multiple Choice: ${params.TestingTypeMultipleChoice}"
       }
     }
     stage('Trigger Deploy job') {
