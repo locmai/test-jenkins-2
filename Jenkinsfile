@@ -26,7 +26,6 @@ pipeline {
           echo "Publishing Dev Packages ..."
       }
     }
-    stage('')
     stage('Deploy Approval'){
       steps {
         input "Deploy to Testing environment?"
