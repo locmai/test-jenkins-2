@@ -14,14 +14,11 @@ pipeline {
     stage('Build Project') {
       steps {
           echo "${params.nightly}"
-          script {
-            String nightly = build.buildVariableResolver.resolve("nightly").toString();
-            if(nightly == "true") {
-              echo "Nightly"
-            }
-            else {
-              "Not Nightly"
-            }
+          if(params.nightly) {
+            echo "Nightly"
+          }
+          else {
+            echo "Not Nightly"
           }
           echo "Building project ..."
       }
