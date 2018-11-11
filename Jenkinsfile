@@ -8,10 +8,20 @@ pipeline {
   parameters {
     string(defaultValue: "full", description: 'What Testing Type?', name: 'TestingType')
     choice(choices: ['smoke', 'fule'], description: 'What Testing Type - Multiple Choices', name: 'TestingTypeMultipleChoice')
+    booleanParam(name: 'nightly', defaultValue: false, description: '')    
   }
   stages {
     stage('Build Project') {
       steps {
+          echo "${params.nightly}"
+          script {
+            if(nightly) {
+              echo "Nightly"
+            }
+            else {
+              "Not Nightly"
+            }
+          }
           echo "Building project ..."
       }
     }
