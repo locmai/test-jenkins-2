@@ -15,7 +15,8 @@ pipeline {
       steps {
           echo "${params.nightly}"
           script {
-            if(nightly) {
+            boolean nightly = build.buildVariableResolver.resolve("nightly").toString().toBoolean();
+            if(${params.nightly}) {
               echo "Nightly"
             }
             else {
